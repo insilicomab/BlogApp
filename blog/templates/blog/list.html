@@ -1,0 +1,18 @@
+{% extends 'blog/base.html' %}
+
+{% block content %}
+  <main>
+    <ul class="list">
+      {% for object in object_list %}
+      <li>
+        {% if object.category == 'limited' %}
+          <i>会員限定</i>
+        {% endif %}
+        <h2>{{ object.title }}</h2>
+        <p>{{ object.summary }}</p>
+        <a href="{% url 'blog:article' object.pk %}">続きを読む</a>
+      </li>
+      {% endfor %}
+    </ul>
+  </main>
+{% endblock content %}

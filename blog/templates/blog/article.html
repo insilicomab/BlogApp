@@ -1,0 +1,30 @@
+{% extends 'blog/base.html' %}
+{% load static %}
+
+{% block content %}
+  <main>
+    <div class="article">
+      {% if object.category == 'all' %}
+        <h1>{{ object.title }}</h1>
+        <p>{{ object.content }}</p>
+      {% endif %}
+      {% if object.category == 'limited' %}
+        <i>会員限定</i>
+        <h1>{{ object.title }}</h1>
+        {% if user.is_authenticated %}
+          <p>{{ object.content }}</p>
+        {% else %}
+          <div class="article-login">
+            <p>今すぐログインしよう！</p>
+            <p>記事の続きは<br>ログインすると読むことができます</p>
+            <img src="{% static 'blog/login.svg' %}">
+            <a class="btn" href="{% url 'blog:login' %}">ログイン</a>
+          </div>
+        {% endif %}
+      {% endif %}
+    </div>
+  </main>
+  <footer>
+    <a class="btn sub" href="{% url 'blog:list' %}">一覧にもどる</a>
+  </footer>
+{% endblock content %}

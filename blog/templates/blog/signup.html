@@ -1,0 +1,36 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>BLOG</title>
+    <link rel="stylesheet" href="{% static 'blog/style.css' %}">
+  </head>
+  <body>
+    <div class="sign">
+      <div class="container">
+        <h1><a href="{% url 'blog:list' %}">BLOG</a></h1>
+        <div class="panel">
+          <h2>新規登録</h2>
+          {% if errors %}
+            <ul class="errors">
+              {% for error in errors %}
+                <li>{{ error }}</li>
+              {% endfor %}
+            </ul>
+          {% endif %}
+          <form action="" method="post">{% csrf_token %}
+            <p>ユーザー名</p>
+            <input type="text" name="username">
+            <p>メールアドレス</p>
+            <input type="text" name="email">
+            <p>パスワード</p>
+            <input type="password" name="password">
+            <input type="submit" value="登録する">
+            <a href="{% url 'blog:list' %}">一覧にもどる</a>
+          </form>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
