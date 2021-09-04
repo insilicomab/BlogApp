@@ -40,8 +40,6 @@ def signupview(request):
     
     else:
         return render(request, 'blog/signup.html', {})
-    
-    return render(request, 'blog/signup.html', {})
 
 def loginview(request):
     if request.method == 'POST':
