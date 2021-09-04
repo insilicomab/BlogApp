@@ -31,6 +31,8 @@ def signupview(request):
         else:
             try:
                 user = User.objects.create_user(username, email, password)
+                login(request, user)
+                return redirect('blog:list')
             
             except IntegrityError:
                 errors.append('ユーザー登録に失敗しました')
